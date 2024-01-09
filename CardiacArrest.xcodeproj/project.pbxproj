@@ -13,6 +13,7 @@
 		1A8163562B4D95BF0043AAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163542B4D95BF0043AAD7 /* Main.storyboard */; };
 		1A8163582B4D95C20043AAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163572B4D95C20043AAD7 /* Assets.xcassets */; };
 		1A81635B2B4D95C20043AAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163592B4D95C20043AAD7 /* LaunchScreen.storyboard */; };
+		1A8163652B4D9DC60043AAD7 /* CardiacArrest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1A8163572B4D95C20043AAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A81635A2B4D95C20043AAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A81635C2B4D95C20043AAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CardiacArrest.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				1A8163522B4D95BF0043AAD7 /* ViewController.swift */,
 				1A8163542B4D95BF0043AAD7 /* Main.storyboard */,
 				1A8163572B4D95C20043AAD7 /* Assets.xcassets */,
+				1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */,
 				1A8163592B4D95C20043AAD7 /* LaunchScreen.storyboard */,
 				1A81635C2B4D95C20043AAD7 /* Info.plist */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8163652B4D9DC60043AAD7 /* CardiacArrest.jpg in Resources */,
 				1A81635B2B4D95C20043AAD7 /* LaunchScreen.storyboard in Resources */,
 				1A8163582B4D95C20043AAD7 /* Assets.xcassets in Resources */,
 				1A8163562B4D95BF0043AAD7 /* Main.storyboard in Resources */,
