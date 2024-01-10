@@ -43,7 +43,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="CPR_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sg2-MP-YYw"/>
+                                                    <action selector="topButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q8E-r1-XB4"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -58,7 +58,7 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcv-rC-N8e" userLabel="EPI Count">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcv-rC-N8e" userLabel="EPI Count">
                                                 <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="75"/>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <constraints>
@@ -70,7 +70,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="EPI_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7TH-5D-VgF"/>
+                                                    <action selector="topButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hnt-wi-Ucc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -90,7 +90,7 @@
                                                     <action selector="LOG_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9zw-YE-5x6"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-yb-cvk">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-yb-cvk">
                                                 <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="75"/>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <constraints>
@@ -102,7 +102,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="SHOCK_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GtY-VT-DJk"/>
+                                                    <action selector="topButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NKP-dT-efU"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -171,7 +171,7 @@
                         <outlet property="SHOCK_Button" destination="fHS-yb-cvk" id="abY-gb-Qcq"/>
                         <outlet property="Sound_Button" destination="LLe-ka-tsp" id="L3c-Ze-alV"/>
                         <outlet property="Start_End_Button" destination="Oke-8P-uKU" id="W3x-Fo-wDt"/>
-                        <outlet property="Total_Time_Label" destination="fu5-Tm-4XR" id="Oxf-aN-yon"/>
+                        <outlet property="Total_Label" destination="fu5-Tm-4XR" id="u5A-CZ-M4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
