@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    var soundBrain = SoundBrain()
+    
     var scrollView: UIScrollView!
     var flowchartImage: UIImageView!
     var reversibleImage: UIImageView!
@@ -52,6 +55,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Play an initil silence sound to get the app ready to play sound
+        soundBrain.playSound(soundTitle: "Silence")
         
         // Feed labels and buttons into the variables
         allTimeLabels = [CPR_Label, EPI_Label, Total_Label]
@@ -118,6 +124,8 @@ class ViewController: UIViewController {
         if sender.tag != 2 {
             timePassed[sender.tag] = 0.0
             allTimeLabels[sender.tag].text = "0:00"
+            allTimeLabels[sender.tag].textColor = UIColor.black
+            allTimeLabels[sender.tag].layer.borderColor = UIColor.black.cgColor
             
             if sender.tag == 0 {
                 CPR_Timer.invalidate()
@@ -138,13 +146,47 @@ class ViewController: UIViewController {
         timePassed[0] += 1.0
         CPR_Label.text = convertToText(timePassed[0])
         
-        print("Hi")
+        // Make the CPR shows red color + warning at the 2 minutes mark
+        if round(timePassed[0]) == 12.0 {
+            CPR_Label.textColor = UIColor.systemRed
+            CPR_Label.layer.borderColor = UIColor.systemRed.cgColor
+            
+            if soundOn {
+                soundBrain.playSound(soundTitle: "CPR")
+            }
+        }
     }
         
     @objc func updateEPITimer() {
         // 1: EPI
         timePassed[1] += 1.0
         EPI_Label.text = convertToText(timePassed[1])
+        
+        let tempEPITime = round(timePassed[1])
+        
+        // Warnings at 3 min, 4 min, and 5 min mark
+        if tempEPITime == 18.0 {
+            EPI_Label.textColor = UIColor.systemGreen
+            EPI_Label.layer.borderColor = UIColor.systemGreen.cgColor
+            
+            if soundOn {
+                soundBrain.playSound(soundTitle: "EPI3")
+            }
+        } else if tempEPITime == 24.0 {
+            EPI_Label.textColor = UIColor.systemOrange
+            EPI_Label.layer.borderColor = UIColor.systemOrange.cgColor
+            
+            if soundOn {
+                soundBrain.playSound(soundTitle: "EPI4")
+            }
+        } else if tempEPITime == 30.0 {
+            EPI_Label.textColor = UIColor.systemRed
+            EPI_Label.layer.borderColor = UIColor.systemRed.cgColor
+            
+            if soundOn {
+                soundBrain.playSound(soundTitle: "EPI5")
+            }
+        }
     }
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
@@ -168,6 +210,8 @@ class ViewController: UIViewController {
             for i in 0...2 {
                 // Reset times + timers
                 allTimeLabels[i].text = "0:00"
+                allTimeLabels[i].textColor = UIColor.black
+                allTimeLabels[i].layer.borderColor = UIColor.black.cgColor
                 timePassed[i] = 0.0
                 
                 // Reset counts + background color
@@ -191,7 +235,7 @@ class ViewController: UIViewController {
     @objc func updateTotalTimer() {
         // 2: Total
         timePassed[2] += 1.0
-        Total_Label.text = convertToText(timePassed[0])
+        Total_Label.text = convertToText(timePassed[2])
     }
     
     @IBAction func SoundOnOffPressed(_ sender: UIButton) {
