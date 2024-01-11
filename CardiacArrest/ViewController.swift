@@ -166,7 +166,7 @@ class ViewController: UIViewController {
     
     @IBAction func topButtonsPressed(_ sender: UIButton) {
         LOG_Count += 1
-        LOG_Button.title = "LOG\(LOG_Count)"
+        LOG_Button.title = "LOG(\(LOG_Count))"
         
         // Press the START button for the user if code has not started
         if !codeActive {
@@ -256,7 +256,7 @@ class ViewController: UIViewController {
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
         LOG_Count += 1
-        LOG_Button.title = "LOG\(LOG_Count)"
+        LOG_Button.title = "LOG(\(LOG_Count))"
         
         let formattedDate = dateFormatter.string(from: Date())
 
@@ -294,9 +294,11 @@ class ViewController: UIViewController {
     @IBAction func SoundOnOffPressed(_ sender: UIButton) {
         if soundOn {
             Sound_Button.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
+            Sound_Button.backgroundColor = UIColor.lightGray
             soundOn = false
         } else {
             Sound_Button.setImage(UIImage(systemName: "speaker.wave.2"), for: .normal)
+            Sound_Button.backgroundColor = UIColor.darkGray
             soundOn = true
         }
     }
