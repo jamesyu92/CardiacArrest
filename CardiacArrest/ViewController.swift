@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    var soundBrain = SoundBrain()
+    
+    @IBOutlet weak var appTitle: UINavigationItem!
+    
     var scrollView: UIScrollView!
     var flowchartImage: UIImageView!
     var reversibleImage: UIImageView!
@@ -16,14 +21,18 @@ class ViewController: UIViewController {
     var CPR_Count: Int = 0
     var EPI_Count: Int = 0
     var SHOCK_Count: Int = 0
+    var LOG_Count: Int = 0
     
     var codeActive: Bool = false
     var soundOn: Bool = true
     
     var CPR_Timer = Timer()
-    var CPR_Time_Passed: Double = 0.0
     var EPI_Timer = Timer()
+    var Total_Timer = Timer()
+    
+    var CPR_Time_Passed: Double = 0.0
     var EPI_Time_Passed: Double = 0.0
+    var Total_Time_Passed: Double = 0.0
     
     @IBOutlet weak var CPR_Label: UILabel!
     @IBOutlet weak var EPI_Label: UILabel!
@@ -36,33 +45,58 @@ class ViewController: UIViewController {
     @IBOutlet weak var CPR_EPI_SHOCK_Stack: UIStackView!
     
     @IBOutlet weak var Sound_Button: UIButton!
-    @IBOutlet weak var Total_Time_Label: UILabel!
+    @IBOutlet weak var Total_Label: UILabel!
     @IBOutlet weak var Start_End_Button: UIButton!
     
     @IBOutlet weak var Bottom_Stack: UIStackView!
     
+    var allTimeLabels: [UILabel]!
+    var timePassed: [Double]!
+    var topButtons: [UIButton]!
+    var counts: [Int]!
+    var countLabels: [String]! = ["CPR ","EPI ","⚡ "]
+    var typeLabels: [String]! = ["CPR","EPI","SHOCK"]
+    
+    let dateFormatter = DateFormatter()
+    
+    // Code Logs: [Time Start/Elapsed, Action Description, Action #, Action Type]
+    var codeLogs: [[String]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Cosmetic Updates
-        CPR_Label.layer.cornerRadius = 5
-        CPR_Label.layer.borderWidth = 1.0
-        CPR_Label.layer.borderColor = UIColor.black.cgColor
         
-        EPI_Label.layer.cornerRadius = 5
-        EPI_Label.layer.borderWidth = 1.0
-        EPI_Label.layer.borderColor = UIColor.black.cgColor
+        // Prevent the app from going to sleep
+        UIApplication.shared.isIdleTimerDisabled = true
+        
+        // Play an initil silence sound to get the app ready to play sound
+        // The do block will enable the app to make sounds even when mute is turned on
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        soundBrain.playSound(soundTitle: "Silence")
+        
+        // Feed labels and buttons into the variables
+        allTimeLabels = [CPR_Label, EPI_Label, Total_Label]
+        timePassed = [CPR_Time_Passed, EPI_Time_Passed, Total_Time_Passed]
+        topButtons = [CPR_Button, EPI_Button, SHOCK_Button]
+        counts = [CPR_Count, EPI_Count, SHOCK_Count]
+        
+        // Cosmetic Updates        
+        // 0: CPR | 1: EPI | 2: SHOCK
+        for i in 0...2 {
+            allTimeLabels[i].layer.cornerRadius = 5
+            allTimeLabels[i].layer.borderWidth = 1.0
+            allTimeLabels[i].layer.borderColor = UIColor.black.cgColor
+            
+            topButtons[i].layer.cornerRadius = 5
+        }
         
         LOG_Button.layer.cornerRadius = 5
         LOG_Button.layer.borderWidth = 1.0
         LOG_Button.layer.borderColor = UIColor.black.cgColor
-        
-        CPR_Button.layer.cornerRadius = 5
-        EPI_Button.layer.cornerRadius = 5
-        SHOCK_Button.layer.cornerRadius = 5
-        
-        Total_Time_Label.layer.cornerRadius = 5
-        Total_Time_Label.layer.borderWidth = 1.0
-        Total_Time_Label.layer.borderColor = UIColor.black.cgColor
         
         Sound_Button.layer.cornerRadius = 5
         Start_End_Button.layer.cornerRadius = 5
@@ -93,88 +127,174 @@ class ViewController: UIViewController {
         
         // Scroll View Background Color
         scrollView.backgroundColor = UIColor.white
+        
+        // Define Date Formatter
+        dateFormatter.dateFormat = "HH:mm:ss"
     }
 
-    @IBAction func LOG_Pressed(_ sender: UIButton) {
+    //MARK: - Segue Preparations. There is only one in this app. "if" statement needs to be added in the future if a different segue is added in the future
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+            let destinationVC = segue.destination as! CodeLogsController
+            destinationVC.codeLogs = codeLogs
+    }
+
+    @IBAction func resetPressed(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(
+            title: "Are you sure you want to reset everything?"
+        ,   message: ""
+        ,   preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "Yes"
+            ,   style: .destructive
+            ,   handler: {action in
+                self.resetScreen()
+                self.codeLogs = []
+                self.LOG_Count = 0
+                self.LOG_Button.setTitle("LOG (0)", for: .normal)
+                }
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "No"
+            ,   style: .default
+            )
+        )
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func CPR_Pressed(_ sender: UIButton) {
+    @IBAction func topButtonsPressed(_ sender: UIButton) {
+        LOG_Count += 1
+        LOG_Button.setTitle("LOG (\(LOG_Count))", for: .normal)
+        
         // Press the START button for the user if code has not started
         if !codeActive {
             Start_End_Button.sendActions(for: .touchUpInside)
         }
         
-        // Reset the CPR Timer
-        CPR_Timer.invalidate()
-        CPR_Time_Passed = 0.0
-        CPR_Label.text = "0:00"
+        // Reset the timers when the CPR or the EPI button is pressed
+        // 0: CPR | 1: EPI | 2: SHOCK
+        if sender.tag != 2 {
+            timePassed[sender.tag] = 0.0
+            allTimeLabels[sender.tag].text = "0:00"
+            allTimeLabels[sender.tag].textColor = UIColor.black
+            allTimeLabels[sender.tag].layer.borderColor = UIColor.black.cgColor
+            
+            if sender.tag == 0 {
+                CPR_Timer.invalidate()
+                CPR_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCPRTimer), userInfo:nil, repeats: true)
+            } else if sender.tag == 1 {
+                EPI_Timer.invalidate()
+                EPI_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateEPITimer), userInfo:nil, repeats: true)
+            }
+        }
         
-        CPR_Timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(updateCPRTimer), userInfo:nil, repeats: true)
+        // Update the CPR, EPI, and SHOCK counts
+        counts[sender.tag] += 1
+        topButtons[sender.tag].setTitle(countLabels[sender.tag] + "\(counts[sender.tag])", for: .normal)
         
-        CPR_Count += 1
-        CPR_Button.setTitle("CPR \(CPR_Count)", for: .normal)
+        
+        // Add a record in the Code Logs -> "Time Elapses","Action","#"
+        codeLogs.append([allTimeLabels[2].text!,countLabels[sender.tag],"\(counts[sender.tag])",typeLabels[sender.tag]])
     }
-    
+
     @objc func updateCPRTimer() {
-        CPR_Time_Passed += 1.0
-        CPR_Label.text = convertToText(CPR_Time_Passed)
-    }
-    
-    @IBAction func EPI_Pressed(_ sender: UIButton) {
-        // Press the START button for the user if code has not started
-        if !codeActive {
-            Start_End_Button.sendActions(for: .touchUpInside)
-        }
+        // 0: CPR
+        timePassed[0] += 1.0
+        CPR_Label.text = convertToText(timePassed[0])
         
-        EPI_Count += 1
-        EPI_Button.setTitle("EPI \(EPI_Count)", for: .normal)
-    }
-    
-    @IBAction func SHOCK_Pressed(_ sender: UIButton) {
-        // Press the START button for the user if code has not started
-        if !codeActive {
-            Start_End_Button.sendActions(for: .touchUpInside)
+        // Make the CPR shows red color + warning at the 2 minutes mark
+        if round(timePassed[0]) == 12.0 {
+            CPR_Label.textColor = UIColor.systemRed
+            CPR_Label.layer.borderColor = UIColor.systemRed.cgColor
+            
+            if soundOn {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {                    self.soundBrain.playSound(soundTitle: "CPR")
+                }
+            }
         }
+    }
         
-        SHOCK_Count += 1
-        SHOCK_Button.setTitle("⚡ \(SHOCK_Count)", for: .normal)
+    @objc func updateEPITimer() {
+        // 1: EPI
+        timePassed[1] += 1.0
+        EPI_Label.text = convertToText(timePassed[1])
+        
+        let tempEPITime = round(timePassed[1])
+        
+        // Warnings at 3 min, 4 min, and 5 min mark
+        if tempEPITime == 18.0 {
+            EPI_Label.textColor = UIColor.systemGreen
+            EPI_Label.layer.borderColor = UIColor.systemGreen.cgColor
+            
+            if soundOn {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.soundBrain.playSound(soundTitle: "EPI3")
+                }
+            }
+        } else if tempEPITime == 24.0 {
+            EPI_Label.textColor = UIColor.systemOrange
+            EPI_Label.layer.borderColor = UIColor.systemOrange.cgColor
+            
+            if soundOn {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.soundBrain.playSound(soundTitle: "EPI4")
+                }
+            }
+        } else if tempEPITime == 30.0 {
+            EPI_Label.textColor = UIColor.systemRed
+            EPI_Label.layer.borderColor = UIColor.systemRed.cgColor
+            
+            if soundOn {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.soundBrain.playSound(soundTitle: "EPI5")
+                }
+            }
+        }
     }
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
+        LOG_Count += 1
+        LOG_Button.setTitle("LOG (\(LOG_Count))", for: .normal)
         
+        let formattedDate = dateFormatter.string(from: Date())
+
         // Start the coding process
         if !codeActive {
-            Start_End_Button.backgroundColor = UIColor.systemIndigo
+            // Add a record in the Code Logs
+            codeLogs.append([formattedDate,"▶️ START","","START"])
+            
+            // 2: Total Timer
+            timePassed[2] = 0.0
+            allTimeLabels[2].text = "0:00"
+            
+            Total_Timer.invalidate()
+            Total_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTotalTimer), userInfo:nil, repeats: true)
+            
+            Start_End_Button.backgroundColor = UIColor.systemGreen
             Start_End_Button.setTitle("ROSC", for: .normal)
             
             codeActive = true
         }
         // Reset the CPR, EPI, Shock, and time
         else {
-            CPR_Label.text = "0:00"
-            CPR_Count = 0
-            CPR_Button.setTitle("CPR 0", for: .normal)
-            CPR_Button.backgroundColor = UIColor.systemIndigo
-            
-            EPI_Label.text = "0:00"
-            EPI_Count = 0
-            EPI_Button.setTitle("EPI 0", for: .normal)
-            EPI_Button.backgroundColor = UIColor.systemIndigo
-            
-            SHOCK_Count = 0
-            SHOCK_Button.setTitle("⚡ 0", for: .normal)
-            SHOCK_Button.backgroundColor = UIColor.systemIndigo
-            
-            Total_Time_Label.text = "0:00"
-            Start_End_Button.backgroundColor = UIColor.systemPink
-            Start_End_Button.setTitle("START", for: .normal)
-            
-            codeActive = false
+            // Add a record in the Code Logs
+            codeLogs.append([formattedDate,"⏸️ ROSC","","ROSC"])
+            resetScreen()
         }
     }
     
+    @objc func updateTotalTimer() {
+        // 2: Total
+        timePassed[2] += 1.0
+        Total_Label.text = convertToText(timePassed[2])
+    }
+    
     @IBAction func SoundOnOffPressed(_ sender: UIButton) {
-        
         if soundOn {
             Sound_Button.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
             soundOn = false
@@ -185,7 +305,6 @@ class ViewController: UIViewController {
     }
     
     func convertToText(_ time: Double) -> String {
-        
         let time_min = Int(time / 60.0)
         let time_sec = time - Double(time_min) * 60.0
         
@@ -195,6 +314,30 @@ class ViewController: UIViewController {
         } else {
             return "\(time_min):\(Int(time_sec))"
         }
+    }
+    
+    func resetScreen () {
+        for i in 0...2 {
+            // Reset times + timers
+            allTimeLabels[i].text = "0:00"
+            allTimeLabels[i].textColor = UIColor.black
+            allTimeLabels[i].layer.borderColor = UIColor.black.cgColor
+            timePassed[i] = 0.0
+            
+            // Reset counts + background color
+            counts[i] = 0
+            topButtons[i].setTitle(countLabels[i] + "0", for: .normal)
+        }
+        
+        Start_End_Button.backgroundColor = UIColor.systemRed
+        Start_End_Button.setTitle("START", for: .normal)
+        
+        // Stop all timers
+        CPR_Timer.invalidate()
+        EPI_Timer.invalidate()
+        Total_Timer.invalidate()
+        
+        codeActive = false
     }
 }
 

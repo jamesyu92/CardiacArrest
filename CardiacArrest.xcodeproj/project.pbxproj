@@ -15,6 +15,14 @@
 		1A8163582B4D95C20043AAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163572B4D95C20043AAD7 /* Assets.xcassets */; };
 		1A81635B2B4D95C20043AAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163592B4D95C20043AAD7 /* LaunchScreen.storyboard */; };
 		1A8163652B4D9DC60043AAD7 /* CardiacArrest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */; };
+		1A99D03D2B4F84D900D81839 /* CodeLogsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A99D03C2B4F84D900D81839 /* CodeLogsController.swift */; };
+		1A99D0402B4F879100D81839 /* CodeLogsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A99D03E2B4F879100D81839 /* CodeLogsCell.swift */; };
+		1A99D0412B4F879100D81839 /* CodeLogsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A99D03F2B4F879100D81839 /* CodeLogsCell.xib */; };
+		1AAD839C2B4F533000C7EBE2 /* SoundBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD839B2B4F533000C7EBE2 /* SoundBrain.swift */; };
+		1AAD839E2B4F544800C7EBE2 /* Silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD839D2B4F544800C7EBE2 /* Silence.mp3 */; };
+		1AAD83A02B4F5E9400C7EBE2 /* OneDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD839F2B4F5E9400C7EBE2 /* OneDing.mp3 */; };
+		1AAD83A22B4F5E9900C7EBE2 /* TwoDings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD83A12B4F5E9900C7EBE2 /* TwoDings.mp3 */; };
+		1AAD83A42B4F5E9D00C7EBE2 /* ThreeDings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD83A32B4F5E9D00C7EBE2 /* ThreeDings.mp3 */; };
 		1AF46BB52B4E70AD00F3EBF3 /* WarningSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AF46BB42B4E70AD00F3EBF3 /* WarningSound.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +37,14 @@
 		1A81635A2B4D95C20043AAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A81635C2B4D95C20043AAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CardiacArrest.jpg; sourceTree = "<group>"; };
+		1A99D03C2B4F84D900D81839 /* CodeLogsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLogsController.swift; sourceTree = "<group>"; };
+		1A99D03E2B4F879100D81839 /* CodeLogsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLogsCell.swift; sourceTree = "<group>"; };
+		1A99D03F2B4F879100D81839 /* CodeLogsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeLogsCell.xib; sourceTree = "<group>"; };
+		1AAD839B2B4F533000C7EBE2 /* SoundBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBrain.swift; sourceTree = "<group>"; };
+		1AAD839D2B4F544800C7EBE2 /* Silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Silence.mp3; sourceTree = "<group>"; };
+		1AAD839F2B4F5E9400C7EBE2 /* OneDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = OneDing.mp3; sourceTree = "<group>"; };
+		1AAD83A12B4F5E9900C7EBE2 /* TwoDings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TwoDings.mp3; sourceTree = "<group>"; };
+		1AAD83A32B4F5E9D00C7EBE2 /* ThreeDings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ThreeDings.mp3; sourceTree = "<group>"; };
 		1AF46BB42B4E70AD00F3EBF3 /* WarningSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WarningSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,14 +78,22 @@
 		1A81634D2B4D95BF0043AAD7 /* CardiacArrest */ = {
 			isa = PBXGroup;
 			children = (
+				1AAD839B2B4F533000C7EBE2 /* SoundBrain.swift */,
 				1A81634E2B4D95BF0043AAD7 /* AppDelegate.swift */,
 				1A8163502B4D95BF0043AAD7 /* SceneDelegate.swift */,
+				1A99D03E2B4F879100D81839 /* CodeLogsCell.swift */,
+				1A99D03F2B4F879100D81839 /* CodeLogsCell.xib */,
+				1A99D03C2B4F84D900D81839 /* CodeLogsController.swift */,
 				1A8163522B4D95BF0043AAD7 /* ViewController.swift */,
 				1A8163542B4D95BF0043AAD7 /* Main.storyboard */,
 				1A8163572B4D95C20043AAD7 /* Assets.xcassets */,
 				1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */,
 				1A5864E42B4E5907003898C6 /* ReversibleCauses.jpg */,
+				1AAD839D2B4F544800C7EBE2 /* Silence.mp3 */,
 				1AF46BB42B4E70AD00F3EBF3 /* WarningSound.mp3 */,
+				1AAD839F2B4F5E9400C7EBE2 /* OneDing.mp3 */,
+				1AAD83A12B4F5E9900C7EBE2 /* TwoDings.mp3 */,
+				1AAD83A32B4F5E9D00C7EBE2 /* ThreeDings.mp3 */,
 				1A8163592B4D95C20043AAD7 /* LaunchScreen.storyboard */,
 				1A81635C2B4D95C20043AAD7 /* Info.plist */,
 			);
@@ -137,7 +161,12 @@
 				1A5864E52B4E5907003898C6 /* ReversibleCauses.jpg in Resources */,
 				1A8163652B4D9DC60043AAD7 /* CardiacArrest.jpg in Resources */,
 				1A81635B2B4D95C20043AAD7 /* LaunchScreen.storyboard in Resources */,
+				1A99D0412B4F879100D81839 /* CodeLogsCell.xib in Resources */,
+				1AAD83A42B4F5E9D00C7EBE2 /* ThreeDings.mp3 in Resources */,
 				1AF46BB52B4E70AD00F3EBF3 /* WarningSound.mp3 in Resources */,
+				1AAD83A22B4F5E9900C7EBE2 /* TwoDings.mp3 in Resources */,
+				1AAD839E2B4F544800C7EBE2 /* Silence.mp3 in Resources */,
+				1AAD83A02B4F5E9400C7EBE2 /* OneDing.mp3 in Resources */,
 				1A8163582B4D95C20043AAD7 /* Assets.xcassets in Resources */,
 				1A8163562B4D95BF0043AAD7 /* Main.storyboard in Resources */,
 			);
@@ -150,8 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AAD839C2B4F533000C7EBE2 /* SoundBrain.swift in Sources */,
 				1A8163532B4D95BF0043AAD7 /* ViewController.swift in Sources */,
 				1A81634F2B4D95BF0043AAD7 /* AppDelegate.swift in Sources */,
+				1A99D0402B4F879100D81839 /* CodeLogsCell.swift in Sources */,
+				1A99D03D2B4F84D900D81839 /* CodeLogsController.swift in Sources */,
 				1A8163512B4D95BF0043AAD7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +342,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,6 +374,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
