@@ -58,6 +58,12 @@ class ViewController: UIViewController {
     var countLabels: [String]! = ["CPR ","EPI ","⚡ "]
     var typeLabels: [String]! = ["CPR","EPI","SHOCK"]
     
+    // Play a sound when CPR or EPI reach the following time
+    // CPR: 2 minutes
+    // EPI: 3, 4, and 5 minutes
+    let CPR_Warning: Double = 120.0
+    let EPI_Warning: [Double] = [180.0,240.0,300.0]
+    
     let dateFormatter = DateFormatter()
     
     // Code Logs: [Time Start/Elapsed, Action Description, Action #, Action Type]
@@ -128,7 +134,7 @@ class ViewController: UIViewController {
         // Define Date Formatter
         dateFormatter.dateFormat = "HH:mm:ss"
     }
-
+    
     //MARK: - Segue Preparations. There is only one in this app. "if" statement needs to be added in the future if a different segue is added in the future
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -179,7 +185,9 @@ class ViewController: UIViewController {
             timePassed[sender.tag] = 0.0
             allTimeLabels[sender.tag].text = "0:00"
             allTimeLabels[sender.tag].textColor = UIColor.black
+            allTimeLabels[sender.tag].font = UIFont(name: "Helvetica", size: 18.0)
             allTimeLabels[sender.tag].layer.borderColor = UIColor.black.cgColor
+            allTimeLabels[sender.tag].layer.borderWidth = 1.0
             
             if sender.tag == 0 {
                 CPR_Timer.invalidate()
@@ -205,12 +213,15 @@ class ViewController: UIViewController {
         CPR_Label.text = convertToText(timePassed[0])
         
         // Make the CPR shows red color + warning at the 2 minutes mark
-        if round(timePassed[0]) == 120.0 {
+        if round(timePassed[0]) == CPR_Warning {
             CPR_Label.textColor = UIColor.systemRed
+            CPR_Label.font = UIFont(name: "Helvetica-Bold", size: 18.0)
             CPR_Label.layer.borderColor = UIColor.systemRed.cgColor
+            CPR_Label.layer.borderWidth = 2.0
             
             if soundOn {
-                DispatchQueue.main.asyncAfter(deadline: .now()) {                    self.soundBrain.playSound(soundTitle: "CPR")
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.soundBrain.playSound(soundTitle: "CPR")
                 }
             }
         }
@@ -224,16 +235,18 @@ class ViewController: UIViewController {
         let tempEPITime = round(timePassed[1])
         
         // Warnings at 3 min, 4 min, and 5 min mark
-        if tempEPITime == 180.0 {
+        if tempEPITime == EPI_Warning[0] {
             EPI_Label.textColor = UIColor.systemGreen
+            EPI_Label.font = UIFont(name: "Helvetica-Bold", size: 18.0)
             EPI_Label.layer.borderColor = UIColor.systemGreen.cgColor
+            EPI_Label.layer.borderWidth = 2.0
             
             if soundOn {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.soundBrain.playSound(soundTitle: "EPI3")
                 }
             }
-        } else if tempEPITime == 240.0 {
+        } else if tempEPITime == EPI_Warning[1] {
             EPI_Label.textColor = UIColor.systemOrange
             EPI_Label.layer.borderColor = UIColor.systemOrange.cgColor
             
@@ -242,7 +255,7 @@ class ViewController: UIViewController {
                     self.soundBrain.playSound(soundTitle: "EPI4")
                 }
             }
-        } else if tempEPITime == 300.0 {
+        } else if tempEPITime == EPI_Warning[2] {
             EPI_Label.textColor = UIColor.systemRed
             EPI_Label.layer.borderColor = UIColor.systemRed.cgColor
             

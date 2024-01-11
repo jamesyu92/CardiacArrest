@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A10DD172B506BEA00CEDC7A /* ReversibleCauses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A10DD162B506BEA00CEDC7A /* ReversibleCauses.jpg */; };
+		1A3645362B50737B00A4F852 /* ReversibleCauses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A3645352B50737B00A4F852 /* ReversibleCauses.jpg */; };
 		1A81634F2B4D95BF0043AAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A81634E2B4D95BF0043AAD7 /* AppDelegate.swift */; };
 		1A8163512B4D95BF0043AAD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8163502B4D95BF0043AAD7 /* SceneDelegate.swift */; };
 		1A8163532B4D95BF0043AAD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8163522B4D95BF0043AAD7 /* ViewController.swift */; };
@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A10DD162B506BEA00CEDC7A /* ReversibleCauses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ReversibleCauses.jpg; path = ../../../../Downloads/ReversibleCauses.jpg; sourceTree = "<group>"; };
+		1A3645352B50737B00A4F852 /* ReversibleCauses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ReversibleCauses.jpg; sourceTree = "<group>"; };
 		1A81634B2B4D95BF0043AAD7 /* CardiacArrest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardiacArrest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A81634E2B4D95BF0043AAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A8163502B4D95BF0043AAD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				1A8163542B4D95BF0043AAD7 /* Main.storyboard */,
 				1A8163572B4D95C20043AAD7 /* Assets.xcassets */,
 				1A8163642B4D9DC60043AAD7 /* CardiacArrest.jpg */,
-				1A10DD162B506BEA00CEDC7A /* ReversibleCauses.jpg */,
+				1A3645352B50737B00A4F852 /* ReversibleCauses.jpg */,
 				1AAD839D2B4F544800C7EBE2 /* Silence.mp3 */,
 				1AF46BB42B4E70AD00F3EBF3 /* WarningSound.mp3 */,
 				1AAD839F2B4F5E9400C7EBE2 /* OneDing.mp3 */,
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8163652B4D9DC60043AAD7 /* CardiacArrest.jpg in Resources */,
-				1A10DD172B506BEA00CEDC7A /* ReversibleCauses.jpg in Resources */,
+				1A3645362B50737B00A4F852 /* ReversibleCauses.jpg in Resources */,
 				1A81635B2B4D95C20043AAD7 /* LaunchScreen.storyboard in Resources */,
 				1A99D0412B4F879100D81839 /* CodeLogsCell.xib in Resources */,
 				1AAD83A42B4F5E9D00C7EBE2 /* ThreeDings.mp3 in Resources */,
