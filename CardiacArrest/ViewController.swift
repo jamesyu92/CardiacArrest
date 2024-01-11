@@ -34,9 +34,10 @@ class ViewController: UIViewController {
     var EPI_Time_Passed: Double = 0.0
     var Total_Time_Passed: Double = 0.0
     
+    @IBOutlet weak var LOG_Button: UIBarButtonItem!
+    
     @IBOutlet weak var CPR_Label: UILabel!
     @IBOutlet weak var EPI_Label: UILabel!
-    @IBOutlet weak var LOG_Button: UIButton!
     
     @IBOutlet weak var CPR_Button: UIButton!
     @IBOutlet weak var EPI_Button: UIButton!
@@ -94,10 +95,6 @@ class ViewController: UIViewController {
             topButtons[i].layer.cornerRadius = 5
         }
         
-        LOG_Button.layer.cornerRadius = 5
-        LOG_Button.layer.borderWidth = 1.0
-        LOG_Button.layer.borderColor = UIColor.black.cgColor
-        
         Sound_Button.layer.cornerRadius = 5
         Start_End_Button.layer.cornerRadius = 5
         
@@ -154,7 +151,7 @@ class ViewController: UIViewController {
                 self.resetScreen()
                 self.codeLogs = []
                 self.LOG_Count = 0
-                self.LOG_Button.setTitle("LOG (0)", for: .normal)
+                self.LOG_Button.title = "LOG(0)"
                 }
             )
         )
@@ -169,7 +166,7 @@ class ViewController: UIViewController {
     
     @IBAction func topButtonsPressed(_ sender: UIButton) {
         LOG_Count += 1
-        LOG_Button.setTitle("LOG (\(LOG_Count))", for: .normal)
+        LOG_Button.title = "LOG\(LOG_Count)"
         
         // Press the START button for the user if code has not started
         if !codeActive {
@@ -259,7 +256,7 @@ class ViewController: UIViewController {
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
         LOG_Count += 1
-        LOG_Button.setTitle("LOG (\(LOG_Count))", for: .normal)
+        LOG_Button.title = "LOG\(LOG_Count)"
         
         let formattedDate = dateFormatter.string(from: Date())
 

@@ -84,10 +84,6 @@
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="LOG (0)"/>
-                                                <connections>
-                                                    <segue destination="vhK-OO-FH0" kind="presentation" identifier="codeLogsSegue" id="LQi-QA-dSL"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-yb-cvk">
                                                 <rect key="frame" x="0.0" y="38" width="117.66666666666667" height="75"/>
@@ -165,6 +161,11 @@
                                 <action selector="resetPressed:" destination="BYZ-38-t0r" id="g0c-nR-5EW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="LOG (0)" id="0dJ-Hg-rx5">
+                            <connections>
+                                <segue destination="vhK-OO-FH0" kind="presentation" identifier="codeLogsSegue" id="1Bg-kO-KOv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="Bottom_Stack" destination="EEA-oZ-c7J" id="7UH-bw-gmq"/>
@@ -173,7 +174,7 @@
                         <outlet property="CPR_Label" destination="HP5-cS-gNo" id="cIA-fx-oms"/>
                         <outlet property="EPI_Button" destination="pcv-rC-N8e" id="yu3-nR-Wj9"/>
                         <outlet property="EPI_Label" destination="Qng-ex-bTU" id="XqU-Vx-99z"/>
-                        <outlet property="LOG_Button" destination="8Zg-3a-iDc" id="49z-OC-v6Q"/>
+                        <outlet property="LOG_Button" destination="0dJ-Hg-rx5" id="2x2-jH-pU4"/>
                         <outlet property="SHOCK_Button" destination="fHS-yb-cvk" id="abY-gb-Qcq"/>
                         <outlet property="Sound_Button" destination="LLe-ka-tsp" id="L3c-Ze-alV"/>
                         <outlet property="Start_End_Button" destination="Oke-8P-uKU" id="W3x-Fo-wDt"/>
@@ -254,16 +255,16 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
