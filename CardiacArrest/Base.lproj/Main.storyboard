@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cardiac Arrest Algorithm Helper-->
+        <!--Cardiac Arrest-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardiacArrest" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,21 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-XO-YQU" userLabel="CPR EPI SHOCK">
-                                <rect key="frame" x="10" y="113" width="373" height="115"/>
+                                <rect key="frame" x="10" y="113" width="373" height="113"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hWw-YZ-suf" userLabel="CPR Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="115"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="113"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-cS-gNo">
-                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-c3-tMx" userLabel="CPR Count">
-                                                <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="75"/>
-                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                <rect key="frame" x="0.0" y="38" width="117.66666666666667" height="75"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="FUq-S6-a4H"/>
                                                 </constraints>
@@ -49,18 +49,18 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EBd-U8-16T" userLabel="EPI Stack">
-                                        <rect key="frame" x="127.66666666666666" y="0.0" width="117.66666666666666" height="115"/>
+                                        <rect key="frame" x="127.66666666666666" y="0.0" width="117.66666666666666" height="113"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qng-ex-bTU">
-                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcv-rC-N8e" userLabel="EPI Count">
-                                                <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="75"/>
-                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                                <rect key="frame" x="0.0" y="38" width="117.66666666666667" height="75"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="aWy-b1-x9a"/>
                                                 </constraints>
@@ -76,22 +76,21 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-br-Nhb" userLabel="Log and Shock">
-                                        <rect key="frame" x="255.33333333333329" y="0.0" width="117.66666666666666" height="115"/>
+                                        <rect key="frame" x="255.33333333333329" y="0.0" width="117.66666666666666" height="113"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-3a-iDc">
-                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="tintColor" systemColor="systemIndigoColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="LOG (0)">
-                                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                                </buttonConfiguration>
+                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="LOG (0)"/>
                                                 <connections>
-                                                    <action selector="LOG_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9zw-YE-5x6"/>
+                                                    <segue destination="vhK-OO-FH0" kind="presentation" identifier="codeLogsSegue" id="LQi-QA-dSL"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-yb-cvk">
-                                                <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="75"/>
+                                                <rect key="frame" x="0.0" y="38" width="117.66666666666667" height="75"/>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="ERM-f8-GGR"/>
@@ -121,7 +120,7 @@
                                         <buttonConfiguration key="configuration" style="filled" title="">
                                             <imageReference key="image" image="speaker.wave.2" catalog="system" symbolScale="large"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="baseBackgroundColor" systemColor="systemIndigoColor"/>
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="SoundOnOffPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pTz-uQ-gVb"/>
@@ -136,7 +135,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oke-8P-uKU">
                                         <rect key="frame" x="255.33333333333329" y="0.0" width="117.66666666666666" height="45"/>
-                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="START">
@@ -160,7 +159,13 @@
                             <constraint firstItem="jNz-XO-YQU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="yEn-b4-YgF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cardiac Arrest Algorithm Helper" id="dQ6-FR-kUl"/>
+                    <navigationItem key="navigationItem" title="Cardiac Arrest" id="dQ6-FR-kUl">
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="r7d-kV-cVa">
+                            <connections>
+                                <action selector="resetPressed:" destination="BYZ-38-t0r" id="g0c-nR-5EW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="Bottom_Stack" destination="EEA-oZ-c7J" id="7UH-bw-gmq"/>
                         <outlet property="CPR_Button" destination="gjf-c3-tMx" id="Kvy-LJ-zTz"/>
@@ -179,6 +184,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+        </scene>
+        <!--Code Logs Controller-->
+        <scene sceneID="L0R-12-lkH">
+            <objects>
+                <viewController id="vhK-OO-FH0" customClass="CodeLogsController" customModule="CardiacArrest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o4j-m9-1tg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code Logs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-4i-mzy">
+                                <rect key="frame" x="10" y="75" width="373" height="32.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="28"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SqH-ET-OyR">
+                                <rect key="frame" x="10" y="117.33333333333331" width="373" height="714.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LUk-6p-QuY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LUk-6p-QuY" firstAttribute="trailing" secondItem="SqH-ET-OyR" secondAttribute="trailing" constant="10" id="261-tn-SYz"/>
+                            <constraint firstItem="pA1-4i-mzy" firstAttribute="leading" secondItem="LUk-6p-QuY" secondAttribute="leading" constant="10" id="7FR-4l-QJ0"/>
+                            <constraint firstItem="SqH-ET-OyR" firstAttribute="leading" secondItem="LUk-6p-QuY" secondAttribute="leading" constant="10" id="9xl-8g-XqM"/>
+                            <constraint firstItem="pA1-4i-mzy" firstAttribute="top" secondItem="LUk-6p-QuY" secondAttribute="top" constant="75" id="TX5-PE-F7V"/>
+                            <constraint firstItem="SqH-ET-OyR" firstAttribute="top" secondItem="pA1-4i-mzy" secondAttribute="bottom" constant="10" id="bhM-wr-ugc"/>
+                            <constraint firstItem="LUk-6p-QuY" firstAttribute="trailing" secondItem="pA1-4i-mzy" secondAttribute="trailing" constant="10" id="cX1-hG-F7k"/>
+                            <constraint firstItem="LUk-6p-QuY" firstAttribute="bottom" secondItem="SqH-ET-OyR" secondAttribute="bottom" constant="10" id="jgX-3l-qla"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IfI-kW-9ra"/>
+                    <connections>
+                        <outlet property="tableView" destination="SqH-ET-OyR" id="fS2-bJ-maM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lZU-g1-mE7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1931" y="-28"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5G7-SP-SUa">
@@ -205,11 +250,20 @@
     <resources>
         <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
         <image name="speaker.wave.3" catalog="system" width="128" height="84"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -26,12 +26,8 @@ struct SoundBrain {
         
         guard let url = Bundle.main.url(forResource: soundFile, withExtension: "mp3") else { return }
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
+        do {            
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            
             guard let player = player else { return }
             
             player.play()
@@ -39,5 +35,6 @@ struct SoundBrain {
         } catch let error {
             print(error.localizedDescription)
         }
+
     }
 }
