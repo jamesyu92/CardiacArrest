@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     var soundBrain = SoundBrain()
     
+    @IBOutlet weak var appTitle: UINavigationItem!
+    
     var scrollView: UIScrollView!
     var flowchartImage: UIImageView!
     var reversibleImage: UIImageView!
@@ -65,7 +67,7 @@ class ViewController: UIViewController {
         topButtons = [CPR_Button, EPI_Button, SHOCK_Button]
         counts = [CPR_Count, EPI_Count, SHOCK_Count]
         
-        // Cosmetic Updates
+        // Cosmetic Updates        
         // 0: CPR | 1: EPI | 2: SHOCK
         for i in 0...2 {
             allTimeLabels[i].layer.cornerRadius = 5

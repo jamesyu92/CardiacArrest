@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0yw-CM-PFd">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Cardiac Arrest Algorithm Helper-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardiacArrest" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-XO-YQU" userLabel="CPR EPI SHOCK">
-                                <rect key="frame" x="10" y="69" width="373" height="115"/>
+                                <rect key="frame" x="10" y="113" width="373" height="115"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hWw-YZ-suf" userLabel="CPR Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="115"/>
@@ -160,6 +160,7 @@
                             <constraint firstItem="jNz-XO-YQU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="yEn-b4-YgF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Cardiac Arrest Algorithm Helper" id="dQ6-FR-kUl"/>
                     <connections>
                         <outlet property="Bottom_Stack" destination="EEA-oZ-c7J" id="7UH-bw-gmq"/>
                         <outlet property="CPR_Button" destination="gjf-c3-tMx" id="Kvy-LJ-zTz"/>
@@ -172,9 +173,31 @@
                         <outlet property="Sound_Button" destination="LLe-ka-tsp" id="L3c-Ze-alV"/>
                         <outlet property="Start_End_Button" destination="Oke-8P-uKU" id="W3x-Fo-wDt"/>
                         <outlet property="Total_Label" destination="fu5-Tm-4XR" id="u5A-CZ-M4K"/>
+                        <outlet property="appTitle" destination="dQ6-FR-kUl" id="HGw-yW-Sh5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5G7-SP-SUa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0yw-CM-PFd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xyg-Eq-qOn">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="szC-LT-aSd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T9O-2W-ypb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
         </scene>
