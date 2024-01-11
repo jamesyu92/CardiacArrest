@@ -208,7 +208,7 @@ class ViewController: UIViewController {
         CPR_Label.text = convertToText(timePassed[0])
         
         // Make the CPR shows red color + warning at the 2 minutes mark
-        if round(timePassed[0]) == 12.0 {
+        if round(timePassed[0]) == 120.0 {
             CPR_Label.textColor = UIColor.systemRed
             CPR_Label.layer.borderColor = UIColor.systemRed.cgColor
             
@@ -227,7 +227,7 @@ class ViewController: UIViewController {
         let tempEPITime = round(timePassed[1])
         
         // Warnings at 3 min, 4 min, and 5 min mark
-        if tempEPITime == 18.0 {
+        if tempEPITime == 180.0 {
             EPI_Label.textColor = UIColor.systemGreen
             EPI_Label.layer.borderColor = UIColor.systemGreen.cgColor
             
@@ -236,7 +236,7 @@ class ViewController: UIViewController {
                     self.soundBrain.playSound(soundTitle: "EPI3")
                 }
             }
-        } else if tempEPITime == 24.0 {
+        } else if tempEPITime == 240.0 {
             EPI_Label.textColor = UIColor.systemOrange
             EPI_Label.layer.borderColor = UIColor.systemOrange.cgColor
             
@@ -245,7 +245,7 @@ class ViewController: UIViewController {
                     self.soundBrain.playSound(soundTitle: "EPI4")
                 }
             }
-        } else if tempEPITime == 30.0 {
+        } else if tempEPITime == 300.0 {
             EPI_Label.textColor = UIColor.systemRed
             EPI_Label.layer.borderColor = UIColor.systemRed.cgColor
             
