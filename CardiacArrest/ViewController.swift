@@ -62,10 +62,11 @@ class ViewController: UIViewController {
     // CPR: 2 minutes
     // EPI: 3, 4, and 5 minutes
     
-    let CPR_Warning: Double = 1.0
-    // let CPR_Warning: Double = 120.0
-    let EPI_Warning: [Double] = [1.0, 2.0, 3.0]
-    // let EPI_Warning: [Double] = [180.0,240.0,300.0]
+    // let CPR_Warning: Double = 1.0
+    let CPR_Warning: Double = 120.0
+    
+    // EPI_Warning: [Double] = [1.0, 2.0, 3.0]
+    let EPI_Warning: [Double] = [180.0,240.0,300.0]
     
     let dateFormatter = DateFormatter()
     
