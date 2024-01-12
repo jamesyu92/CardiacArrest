@@ -61,8 +61,11 @@ class ViewController: UIViewController {
     // Play a sound when CPR or EPI reach the following time
     // CPR: 2 minutes
     // EPI: 3, 4, and 5 minutes
-    let CPR_Warning: Double = 120.0
-    let EPI_Warning: [Double] = [180.0,240.0,300.0]
+    
+    let CPR_Warning: Double = 1.0
+    // let CPR_Warning: Double = 120.0
+    let EPI_Warning: [Double] = [1.0, 2.0, 3.0]
+    // let EPI_Warning: [Double] = [180.0,240.0,300.0]
     
     let dateFormatter = DateFormatter()
     
@@ -329,11 +332,14 @@ class ViewController: UIViewController {
     }
     
     func resetScreen () {
+        // Consider consolidating the following snippet of code with the "topButtonsPressed" function
         for i in 0...2 {
             // Reset times + timers
             allTimeLabels[i].text = "0:00"
             allTimeLabels[i].textColor = UIColor.black
+            allTimeLabels[i].font = UIFont(name: "Helvetica", size: 18.0)
             allTimeLabels[i].layer.borderColor = UIColor.black.cgColor
+            allTimeLabels[i].layer.borderWidth = 1.0
             timePassed[i] = 0.0
             
             // Reset counts + background color
