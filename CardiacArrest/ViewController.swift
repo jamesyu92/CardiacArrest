@@ -48,6 +48,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Sound_Button: UIButton!
     @IBOutlet weak var Total_Label: UILabel!
     @IBOutlet weak var Start_End_Button: UIButton!
+    @IBOutlet weak var Death_Button: UIButton!
     
     @IBOutlet weak var Bottom_Stack: UIStackView!
     
@@ -70,8 +71,8 @@ class ViewController: UIViewController {
     
     let dateFormatter = DateFormatter()
     
-    // Code Logs: [Time Start/Elapsed, Action Description, Action #, Action Type]
-    var codeLogs: [[String]] = []
+    // Used in the Code Logs view
+    var codeLogs: [[String]] = [["Time","Split","Action","",""]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +108,10 @@ class ViewController: UIViewController {
         
         Sound_Button.layer.cornerRadius = 5
         Start_End_Button.layer.cornerRadius = 5
+        
+        // Hide the Death Button. This will be revealed when the app is started
+        Death_Button.isHidden = true
+        Death_Button.layer.cornerRadius = 5
         
         // Set the scrollView's frame to be the size of the screen
         // Height: Starting y-value of Bottom Stack - Ending y-value of Top Stack - 20.0 (Two times the 10.0 margin)
@@ -159,7 +164,7 @@ class ViewController: UIViewController {
             ,   style: .destructive
             ,   handler: {action in
                 self.resetScreen()
-                self.codeLogs = []
+                self.codeLogs = [["Time","Split","Action","#",""]]
                 self.LOG_Count = 0
                 self.LOG_Button.title = "LOG(0)"
                 }
@@ -177,6 +182,9 @@ class ViewController: UIViewController {
     @IBAction func topButtonsPressed(_ sender: UIButton) {
         LOG_Count += 1
         LOG_Button.title = "LOG(\(LOG_Count))"
+        
+        // formatedDate: Current time in HH:mm:ss (24 hour clock)
+        let formattedDate = dateFormatter.string(from: Date())
         
         // Press the START button for the user if code has not started
         if !codeActive {
@@ -207,8 +215,8 @@ class ViewController: UIViewController {
         topButtons[sender.tag].setTitle(countLabels[sender.tag] + "\(counts[sender.tag])", for: .normal)
         
         
-        // Add a record in the Code Logs -> "Time Elapses","Action","#"
-        codeLogs.append([allTimeLabels[2].text!,countLabels[sender.tag],"\(counts[sender.tag])",typeLabels[sender.tag]])
+        // Add a record in the Code Logs -> "Time","Time Elapses","Action","#","Action Type"
+        codeLogs.append([formattedDate,allTimeLabels[2].text!,countLabels[sender.tag],"\(counts[sender.tag])",typeLabels[sender.tag]])
     }
 
     @objc func updateCPRTimer() {
@@ -275,12 +283,13 @@ class ViewController: UIViewController {
         LOG_Count += 1
         LOG_Button.title = "LOG(\(LOG_Count))"
         
+        // formatedDate: Current time in HH:mm:ss (24 hour clock)
         let formattedDate = dateFormatter.string(from: Date())
 
         // Start the coding process
         if !codeActive {
             // Add a record in the Code Logs
-            codeLogs.append([formattedDate,"▶️ START","","START"])
+            codeLogs.append([formattedDate,allTimeLabels[2].text!,"▶️ START","","START"])
             
             // 2: Total Timer
             timePassed[2] = 0.0
@@ -293,11 +302,20 @@ class ViewController: UIViewController {
             Start_End_Button.setTitle("ROSC", for: .normal)
             
             codeActive = true
+            
+            // Unhide the DEATH button
+            Death_Button.isHidden = false
         }
         // Reset the CPR, EPI, Shock, and time
         else {
-            // Add a record in the Code Logs
-            codeLogs.append([formattedDate,"⏸️ ROSC","","ROSC"])
+            // RSOC button pressed
+            if sender.tag == 0 {
+                codeLogs.append([formattedDate,allTimeLabels[2].text!,"🎉 ROSC","","ROSC"])
+            }
+            // DEATH button pressed
+            else {
+                codeLogs.append([formattedDate,allTimeLabels[2].text!,"☠️ DEATH","","DEATH"])
+            }
             resetScreen()
         }
     }
@@ -350,6 +368,8 @@ class ViewController: UIViewController {
         
         Start_End_Button.backgroundColor = UIColor.systemRed
         Start_End_Button.setTitle("START", for: .normal)
+        
+        Death_Button.isHidden = true
         
         // Stop all timers
         CPR_Timer.invalidate()

@@ -37,22 +37,38 @@ extension CodeLogsController: UITableViewDataSource {
         
         let rowNumber: Int = indexPath.row
         
-        cell.timeLabel.text = codeLogs[rowNumber][0]
-        cell.actionLabel.text = codeLogs[rowNumber][1]
-        cell.actionNumber.text = "#" + codeLogs[rowNumber][2]
+        cell.currentTimeLabel.text = codeLogs[rowNumber][0]
+        cell.timeLabel.text = codeLogs[rowNumber][1]
+        cell.actionLabel.text = codeLogs[rowNumber][2]
+        cell.actionNumber.text = "#" + codeLogs[rowNumber][3]
         
+        // Background coloring to make it easier for the user to look at the records
+        if rowNumber % 2 == 1 {
+            cell.backgroundColor = UIColor(red: 0.898, green: 0.898, blue: 0.918, alpha: 1.0)
+        }
+        
+        if rowNumber == 0 {
+            // Helvetica-Bold for the Header
+            cell.currentTimeLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+            cell.timeLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+            cell.actionLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+            cell.actionNumber.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+        }
         // Empty action number indicates START or ROSC
-        if cell.actionNumber.text == "#" {
+        else if cell.actionNumber.text == "#" {
             cell.actionLabel.textAlignment = .left
-            cell.actionNumber.text = ""
-        } else {
+            cell.actionNumber.isHidden = true
+        } 
+        // Following are default alignment -> additional code unnecessary
+        /*else {
             cell.actionLabel.textAlignment = .right
             cell.actionNumber.textAlignment = .left
         }
+         */
         
         // Update Text Colors based on action
         cell.actionLabel.textColor =
-            switch codeLogs[rowNumber][3] {
+            switch codeLogs[rowNumber][4] {
             case "START":
                 UIColor.systemRed
             case "ROSC":
@@ -63,7 +79,7 @@ extension CodeLogsController: UITableViewDataSource {
                 UIColor.systemBlue
             case "SHOCK":
                 UIColor.systemIndigo
-            // The following will not be triggered
+            // The following will be used for the header
             default:
                 UIColor.black
             }

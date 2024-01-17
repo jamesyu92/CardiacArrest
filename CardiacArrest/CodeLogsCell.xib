@@ -17,33 +17,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-oY-fH0">
-                        <rect key="frame" x="0.0" y="10" width="320" height="24"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-oY-fH0" userLabel="Overall Stack">
+                        <rect key="frame" x="0.0" y="2" width="320" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezG-Jc-Elx">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="24"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-Mx-qrk">
-                                <rect key="frame" x="110" y="0.0" width="100" height="24"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiU-Kw-6tz">
-                                <rect key="frame" x="220" y="0.0" width="100" height="24"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qaj-hD-ZdQ" userLabel="Timer Timer">
+                                <rect key="frame" x="0.0" y="0.0" width="155" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiV-2O-u68">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="40"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezG-Jc-Elx">
+                                        <rect key="frame" x="82.666666666666686" y="0.0" width="72.333333333333314" height="40"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O2q-11-iFN" userLabel="Action Number">
+                                <rect key="frame" x="165" y="0.0" width="155" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-Mx-qrk">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="40"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiU-Kw-6tz">
+                                        <rect key="frame" x="82.666666666666657" y="0.0" width="72.333333333333343" height="40"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="UPX-oY-fH0" secondAttribute="bottom" constant="10" id="NXQ-Qu-Kan"/>
-                    <constraint firstItem="UPX-oY-fH0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="c6Y-MW-GJs"/>
+                    <constraint firstAttribute="bottom" secondItem="UPX-oY-fH0" secondAttribute="bottom" constant="2" id="NXQ-Qu-Kan"/>
+                    <constraint firstItem="UPX-oY-fH0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="c6Y-MW-GJs"/>
                     <constraint firstItem="UPX-oY-fH0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gRU-Nd-zAR"/>
                     <constraint firstAttribute="trailing" secondItem="UPX-oY-fH0" secondAttribute="trailing" id="sCz-XN-S1V"/>
                 </constraints>
@@ -53,6 +69,7 @@
             <connections>
                 <outlet property="actionLabel" destination="HPn-Mx-qrk" id="9xT-7T-8A7"/>
                 <outlet property="actionNumber" destination="GiU-Kw-6tz" id="dRc-Ry-shA"/>
+                <outlet property="currentTimeLabel" destination="DiV-2O-u68" id="O6B-Cv-UM4"/>
                 <outlet property="timeLabel" destination="ezG-Jc-Elx" id="4VF-Bk-VIA"/>
             </connections>
             <point key="canvasLocation" x="-53.435114503816791" y="-12.67605633802817"/>
