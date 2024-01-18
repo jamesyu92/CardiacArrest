@@ -40,10 +40,14 @@ extension CodeLogsController: UITableViewDataSource {
         cell.currentTimeLabel.text = codeLogs[rowNumber][0]
         cell.timeLabel.text = codeLogs[rowNumber][1]
         cell.actionLabel.text = codeLogs[rowNumber][2]
-        cell.actionNumber.text = "#" + codeLogs[rowNumber][3]
+        cell.actionNumber.text = codeLogs[rowNumber][3]
         
+        // Color for empty rolls
+        if codeLogs[rowNumber][4] == "EMPTY" {
+            cell.backgroundColor = .darkGray
+        }
         // Background coloring to make it easier for the user to look at the records
-        if rowNumber % 2 == 1 {
+        else if rowNumber % 2 == 1 {
             cell.backgroundColor = UIColor(red: 0.898, green: 0.898, blue: 0.918, alpha: 1.0)
         }
         
@@ -54,8 +58,8 @@ extension CodeLogsController: UITableViewDataSource {
             cell.actionLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
             cell.actionNumber.font = UIFont(name: "Helvetica-Bold", size: 18.0)
         }
-        // Empty action number indicates START or ROSC
-        else if cell.actionNumber.text == "#" {
+        // Empty action number indicates START, ROSC, or DEATH
+        else if cell.actionNumber.text == "" {
             cell.actionLabel.textAlignment = .left
             cell.actionNumber.isHidden = true
         } 

@@ -152,6 +152,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func resetPressed(_ sender: UIBarButtonItem) {
+        // Haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         let alert = UIAlertController(
             title: "Are you sure you want to reset everything?"
@@ -180,43 +182,42 @@ class ViewController: UIViewController {
     }
     
     @IBAction func topButtonsPressed(_ sender: UIButton) {
-        LOG_Count += 1
-        LOG_Button.title = "LOG(\(LOG_Count))"
-        
-        // formatedDate: Current time in HH:mm:ss (24 hour clock)
-        let formattedDate = dateFormatter.string(from: Date())
-        
-        // Press the START button for the user if code has not started
-        if !codeActive {
-            Start_End_Button.sendActions(for: .touchUpInside)
-        }
-        
-        // Reset the timers when the CPR or the EPI button is pressed
-        // 0: CPR | 1: EPI | 2: SHOCK
-        if sender.tag != 2 {
-            timePassed[sender.tag] = 0.0
-            allTimeLabels[sender.tag].text = "0:00"
-            allTimeLabels[sender.tag].textColor = UIColor.black
-            allTimeLabels[sender.tag].font = UIFont(name: "Helvetica", size: 18.0)
-            allTimeLabels[sender.tag].layer.borderColor = UIColor.black.cgColor
-            allTimeLabels[sender.tag].layer.borderWidth = 1.0
-            
-            if sender.tag == 0 {
-                CPR_Timer.invalidate()
-                CPR_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCPRTimer), userInfo:nil, repeats: true)
-            } else if sender.tag == 1 {
-                EPI_Timer.invalidate()
-                EPI_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateEPITimer), userInfo:nil, repeats: true)
-            }
-        }
+        // Haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         // Update the CPR, EPI, and SHOCK counts
         counts[sender.tag] += 1
         topButtons[sender.tag].setTitle(countLabels[sender.tag] + "\(counts[sender.tag])", for: .normal)
         
-        
-        // Add a record in the Code Logs -> "Time","Time Elapses","Action","#","Action Type"
-        codeLogs.append([formattedDate,allTimeLabels[2].text!,countLabels[sender.tag],"\(counts[sender.tag])",typeLabels[sender.tag]])
+        // Timer logic unnecessary if the code is not active
+        // Reset the timers when the CPR or the EPI button is pressed
+        // 0: CPR | 1: EPI | 2: SHOCK
+        if codeActive {
+            LOG_Count += 1
+            LOG_Button.title = "LOG(\(LOG_Count))"
+            
+            // formatedDate: Current time in HH:mm:ss (24 hour clock)
+            let formattedDate = dateFormatter.string(from: Date())
+            if sender.tag != 2 {
+                timePassed[sender.tag] = 0.0
+                allTimeLabels[sender.tag].text = "0:00"
+                allTimeLabels[sender.tag].textColor = UIColor.black
+                allTimeLabels[sender.tag].font = UIFont(name: "Helvetica", size: 18.0)
+                allTimeLabels[sender.tag].layer.borderColor = UIColor.black.cgColor
+                allTimeLabels[sender.tag].layer.borderWidth = 1.0
+                
+                if sender.tag == 0 {
+                    CPR_Timer.invalidate()
+                    CPR_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCPRTimer), userInfo:nil, repeats: true)
+                } else if sender.tag == 1 {
+                    EPI_Timer.invalidate()
+                    EPI_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateEPITimer), userInfo:nil, repeats: true)
+                }
+            }
+            
+            // Add a record in the Code Logs -> "Time","Time Elapses","Action","#","Action Type"
+            codeLogs.append([formattedDate,allTimeLabels[2].text!,countLabels[sender.tag],"#\(counts[sender.tag])",typeLabels[sender.tag]])
+        }
     }
 
     @objc func updateCPRTimer() {
@@ -280,20 +281,29 @@ class ViewController: UIViewController {
     }
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
-        LOG_Count += 1
-        LOG_Button.title = "LOG(\(LOG_Count))"
+        // Haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         // formatedDate: Current time in HH:mm:ss (24 hour clock)
         let formattedDate = dateFormatter.string(from: Date())
 
         // Start the coding process
         if !codeActive {
+            for i in 0...2 {
+                // Capture Pre-Code Actions in the log
+                // 0: CPR | 1: EPI | 2: SHOCK
+                if counts[i] != 0 {
+                    LOG_Count += 1
+                    codeLogs.append(["Pre-Code","",countLabels[i],"x\(counts[i])",typeLabels[i]])
+                }
+                
+                // Set all timers to 0:00
+                timePassed[i] = 0.0
+                allTimeLabels[i].text = "0:00"
+            }
+            
             // Add a record in the Code Logs
             codeLogs.append([formattedDate,allTimeLabels[2].text!,"▶️ START","","START"])
-            
-            // 2: Total Timer
-            timePassed[2] = 0.0
-            allTimeLabels[2].text = "0:00"
             
             Total_Timer.invalidate()
             Total_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTotalTimer), userInfo:nil, repeats: true)
@@ -316,8 +326,16 @@ class ViewController: UIViewController {
             else {
                 codeLogs.append([formattedDate,allTimeLabels[2].text!,"☠️ DEATH","","DEATH"])
             }
+            
+            // Include two empty rows to separate records
+            codeLogs.append(["","","","","EMPTY"])
+            codeLogs.append(["","","","","EMPTY"])
             resetScreen()
         }
+        
+        // Update LOG Count
+        LOG_Count += 1
+        LOG_Button.title = "LOG(\(LOG_Count))"
     }
     
     @objc func updateTotalTimer() {
@@ -327,6 +345,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func SoundOnOffPressed(_ sender: UIButton) {
+        // Haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         if soundOn {
             Sound_Button.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
             Sound_Button.backgroundColor = UIColor.lightGray
@@ -365,6 +386,10 @@ class ViewController: UIViewController {
             counts[i] = 0
             topButtons[i].setTitle(countLabels[i] + "0", for: .normal)
         }
+        
+        // Show "Pre-Code" Mode
+        CPR_Label.text = "Pre-Code"
+        EPI_Label.text = "Mode!!!"
         
         Start_End_Button.backgroundColor = UIColor.systemRed
         Start_End_Button.setTitle("START", for: .normal)
