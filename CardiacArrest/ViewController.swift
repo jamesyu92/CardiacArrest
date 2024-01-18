@@ -10,6 +10,10 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
+    // Store the code logs in case of crash
+    let defaults = UserDefaults.standard
+    let defaultKey: String = "codeLogsArray"
+    
     var soundBrain = SoundBrain()
     
     @IBOutlet weak var appTitle: UINavigationItem!
@@ -90,6 +94,19 @@ class ViewController: UIViewController {
         }
         soundBrain.playSound(soundTitle: "Silence")
         
+        // Grab the default for CodeLogs (If available)
+        if let tempCodeLogs = defaults.array(forKey: defaultKey) as? [[String]] {
+            codeLogs = tempCodeLogs
+            
+            // Derive and update the log count (Ignore "EMPTY" + "Header" rows)
+            for i in 0..<codeLogs.count {
+                if codeLogs[i][0] != "Time" && codeLogs[i][0] != "" {
+                    LOG_Count += 1
+                }
+            }
+            LOG_Button.title = "LOG(\(LOG_Count))"
+        }
+            
         // Feed labels and buttons into the variables
         allTimeLabels = [CPR_Label, EPI_Label, Total_Label]
         timePassed = [CPR_Time_Passed, EPI_Time_Passed, Total_Time_Passed]
@@ -146,14 +163,16 @@ class ViewController: UIViewController {
     
     //MARK: - Segue Preparations. There is only one in this app. "if" statement needs to be added in the future if a different segue is added in the future
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-            let destinationVC = segue.destination as! CodeLogsController
-            destinationVC.codeLogs = codeLogs
+        // Haptic feedback
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        
+        let destinationVC = segue.destination as! CodeLogsController
+        destinationVC.codeLogs = codeLogs
     }
 
     @IBAction func resetPressed(_ sender: UIBarButtonItem) {
         // Haptic feedback
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         let alert = UIAlertController(
             title: "Are you sure you want to reset everything?"
@@ -169,6 +188,7 @@ class ViewController: UIViewController {
                 self.codeLogs = [["Time","Split","Action","#",""]]
                 self.LOG_Count = 0
                 self.LOG_Button.title = "LOG(0)"
+                self.saveCodeLogs()
                 }
             )
         )
@@ -183,7 +203,7 @@ class ViewController: UIViewController {
     
     @IBAction func topButtonsPressed(_ sender: UIButton) {
         // Haptic feedback
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         // Update the CPR, EPI, and SHOCK counts
         counts[sender.tag] += 1
@@ -217,6 +237,8 @@ class ViewController: UIViewController {
             
             // Add a record in the Code Logs -> "Time","Time Elapses","Action","#","Action Type"
             codeLogs.append([formattedDate,allTimeLabels[2].text!,countLabels[sender.tag],"#\(counts[sender.tag])",typeLabels[sender.tag]])
+            
+            saveCodeLogs()
         }
     }
 
@@ -282,7 +304,7 @@ class ViewController: UIViewController {
     
     @IBAction func Start_ROSC_Pressed(_ sender: UIButton) {
         // Haptic feedback
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         // formatedDate: Current time in HH:mm:ss (24 hour clock)
         let formattedDate = dateFormatter.string(from: Date())
@@ -304,6 +326,7 @@ class ViewController: UIViewController {
             
             // Add a record in the Code Logs
             codeLogs.append([formattedDate,allTimeLabels[2].text!,"▶️ START","","START"])
+            saveCodeLogs()
             
             Total_Timer.invalidate()
             Total_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTotalTimer), userInfo:nil, repeats: true)
@@ -330,6 +353,8 @@ class ViewController: UIViewController {
             // Include two empty rows to separate records
             codeLogs.append(["","","","","EMPTY"])
             codeLogs.append(["","","","","EMPTY"])
+            
+            saveCodeLogs()
             resetScreen()
         }
         
@@ -346,7 +371,7 @@ class ViewController: UIViewController {
     
     @IBAction func SoundOnOffPressed(_ sender: UIButton) {
         // Haptic feedback
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         if soundOn {
             Sound_Button.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
@@ -402,6 +427,11 @@ class ViewController: UIViewController {
         Total_Timer.invalidate()
         
         codeActive = false
+    }
+    
+    // Save the code logs into Default
+    func saveCodeLogs () {
+        defaults.set(codeLogs, forKey: defaultKey)
     }
 }
 
