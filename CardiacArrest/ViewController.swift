@@ -316,7 +316,7 @@ class ViewController: UIViewController {
                 // 0: CPR | 1: EPI | 2: SHOCK
                 if counts[i] != 0 {
                     LOG_Count += 1
-                    codeLogs.append(["Pre-Code","",countLabels[i],"x\(counts[i])",typeLabels[i]])
+                    codeLogs.append(["Pre-ER","",countLabels[i],"x\(counts[i])",typeLabels[i]])
                 }
                 
                 // Set all timers to 0:00
@@ -413,7 +413,7 @@ class ViewController: UIViewController {
         }
         
         // Show "Pre-Code" Mode
-        CPR_Label.text = "Pre-Code"
+        CPR_Label.text = "Pre-ER"
         EPI_Label.text = "Mode!!!"
         
         Start_End_Button.backgroundColor = UIColor.systemRed
