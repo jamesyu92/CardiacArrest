@@ -22,6 +22,10 @@ class ViewController: UIViewController {
     var flowchartImage: UIImageView!
     var reversibleImage: UIImageView!
     
+    // NOTE: SPECIAL LOGIC FOR CPR_Count!
+    // This variable is used to track Pre-ER minutes performed, AND
+    // used to track the # of CPR performed once the code has started
+    
     var CPR_Count: Int = 0
     var EPI_Count: Int = 0
     var SHOCK_Count: Int = 0
@@ -40,8 +44,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var LOG_Button: UIBarButtonItem!
     
+    @IBOutlet weak var Pre_CPR_Stack: UIStackView!
+    @IBOutlet weak var CPR_Stack: UIStackView!
+    
+    @IBOutlet weak var Pre_CPR_Label: UILabel!
     @IBOutlet weak var CPR_Label: UILabel!
     @IBOutlet weak var EPI_Label: UILabel!
+    
+    @IBOutlet weak var Pre_CPR_1: UIButton!
+    @IBOutlet weak var Pre_CPR_5: UIButton!
     
     @IBOutlet weak var CPR_Button: UIButton!
     @IBOutlet weak var EPI_Button: UIButton!
@@ -122,6 +133,13 @@ class ViewController: UIViewController {
             
             topButtons[i].layer.cornerRadius = 5
         }
+        
+        // Cosmetic Updates for the Pre-ER CPR buttons
+        Pre_CPR_Label.layer.cornerRadius = 5
+        Pre_CPR_Label.layer.borderWidth = 1.0
+        Pre_CPR_Label.layer.borderColor = UIColor.black.cgColor
+        Pre_CPR_1.layer.cornerRadius = 5
+        Pre_CPR_5.layer.cornerRadius = 5
         
         Sound_Button.layer.cornerRadius = 5
         Start_End_Button.layer.cornerRadius = 5
@@ -205,9 +223,15 @@ class ViewController: UIViewController {
         // Haptic feedback
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
-        // Update the CPR, EPI, and SHOCK counts
-        counts[sender.tag] += 1
-        topButtons[sender.tag].setTitle(countLabels[sender.tag] + "\(counts[sender.tag])", for: .normal)
+        // Pre-ER logic
+        if sender.tag == -1 || sender.tag == -5 {
+            counts[0] -= sender.tag
+            Pre_CPR_Label.text = "CPR: \(counts[0]) min"
+        } else {
+            // Update the CPR, EPI, and SHOCK counts
+            counts[sender.tag] += 1
+            topButtons[sender.tag].setTitle(countLabels[sender.tag] + "\(counts[sender.tag])", for: .normal)
+        }
         
         // Timer logic unnecessary if the code is not active
         // Reset the timers when the CPR or the EPI button is pressed
@@ -316,7 +340,16 @@ class ViewController: UIViewController {
                 // 0: CPR | 1: EPI | 2: SHOCK
                 if counts[i] != 0 {
                     LOG_Count += 1
-                    codeLogs.append(["Pre-ER","",countLabels[i],"x\(counts[i])",typeLabels[i]])
+                    
+                    // Special logic for CPR
+                    if i == 0 {
+                        codeLogs.append(["Pre-ER","",countLabels[0],"+\(counts[0]) min",typeLabels[0]])
+                        
+                        // Reset the CPR Count
+                        counts[0] = 0
+                    } else {
+                        codeLogs.append(["Pre-ER","",countLabels[i],"x\(counts[i])",typeLabels[i]])
+                    }
                 }
                 
                 // Set all timers to 0:00
@@ -327,6 +360,10 @@ class ViewController: UIViewController {
             // Add a record in the Code Logs
             codeLogs.append([formattedDate,allTimeLabels[2].text!,"▶️ START","","START"])
             saveCodeLogs()
+            
+            // Hide the Pre-CPR Stack. Unhide the CPR-Stack
+            Pre_CPR_Stack.isHidden = true
+            CPR_Stack.isHidden = false
             
             Total_Timer.invalidate()
             Total_Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTotalTimer), userInfo:nil, repeats: true)
@@ -412,9 +449,12 @@ class ViewController: UIViewController {
             topButtons[i].setTitle(countLabels[i] + "0", for: .normal)
         }
         
-        // Show "Pre-Code" Mode
-        CPR_Label.text = "Pre-ER"
-        EPI_Label.text = "Mode!!!"
+        // Show "Pre-ER" Mode
+        Pre_CPR_Stack.isHidden = false
+        CPR_Stack.isHidden = true
+        
+        Pre_CPR_Label.text = "CPR: 0 min"
+        EPI_Label.text = "Pre-ER!!!"
         
         Start_End_Button.backgroundColor = UIColor.systemRed
         Start_End_Button.setTitle("START", for: .normal)

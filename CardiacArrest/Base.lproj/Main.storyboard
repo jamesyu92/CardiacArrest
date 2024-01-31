@@ -21,18 +21,65 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-XO-YQU" userLabel="CPR EPI SHOCK">
                                 <rect key="frame" x="10" y="113" width="373" height="113"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hWw-YZ-suf" userLabel="CPR Stack">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bQe-0f-uAs" userLabel="Pre-CPR Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="113"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-ER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-cS-gNo">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CPR: 0 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dag-0j-nlr">
                                                 <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-c3-tMx" userLabel="CPR Count">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="enE-yl-GYM" userLabel="Pre-CPR Stacks">
                                                 <rect key="frame" x="0.0" y="38" width="117.66666666666667" height="75"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEF-hs-FMX" userLabel="Pre-CPR +1 min">
+                                                        <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="35"/>
+                                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="vZb-x4-N8h"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="CPR +1 min">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="topButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VRP-nx-Vxj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="-5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPf-lg-OWu" userLabel="Pre-CPR +5 min">
+                                                        <rect key="frame" x="0.0" y="40" width="117.66666666666667" height="35"/>
+                                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="2wJ-fi-MG3"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="CPR +5 min">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="topButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5oX-2U-bd9"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hWw-YZ-suf" userLabel="CPR Stack">
+                                        <rect key="frame" x="122.66666666666666" y="0.0" width="0.0" height="113"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-cS-gNo">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="33"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-c3-tMx" userLabel="CPR Count">
+                                                <rect key="frame" x="0.0" y="38" width="0.0" height="75"/>
                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="FUq-S6-a4H"/>
@@ -51,10 +98,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EBd-U8-16T" userLabel="EPI Stack">
                                         <rect key="frame" x="127.66666666666666" y="0.0" width="117.66666666666666" height="113"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qng-ex-bTU">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-ER!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qng-ex-bTU">
                                                 <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -185,10 +232,15 @@
                         <outlet property="CPR_Button" destination="gjf-c3-tMx" id="Kvy-LJ-zTz"/>
                         <outlet property="CPR_EPI_SHOCK_Stack" destination="jNz-XO-YQU" id="tja-ja-wpI"/>
                         <outlet property="CPR_Label" destination="HP5-cS-gNo" id="cIA-fx-oms"/>
+                        <outlet property="CPR_Stack" destination="hWw-YZ-suf" id="bTZ-nd-5zf"/>
                         <outlet property="Death_Button" destination="Jx7-eQ-obd" id="diK-Zt-seQ"/>
                         <outlet property="EPI_Button" destination="pcv-rC-N8e" id="yu3-nR-Wj9"/>
                         <outlet property="EPI_Label" destination="Qng-ex-bTU" id="XqU-Vx-99z"/>
                         <outlet property="LOG_Button" destination="0dJ-Hg-rx5" id="2x2-jH-pU4"/>
+                        <outlet property="Pre_CPR_1" destination="fEF-hs-FMX" id="NF5-GL-cEW"/>
+                        <outlet property="Pre_CPR_5" destination="bPf-lg-OWu" id="nSz-89-3mK"/>
+                        <outlet property="Pre_CPR_Label" destination="dag-0j-nlr" id="rL8-5w-Zy5"/>
+                        <outlet property="Pre_CPR_Stack" destination="bQe-0f-uAs" id="gWD-hs-7ei"/>
                         <outlet property="SHOCK_Button" destination="fHS-yb-cvk" id="abY-gb-Qcq"/>
                         <outlet property="Sound_Button" destination="LLe-ka-tsp" id="L3c-Ze-alV"/>
                         <outlet property="Start_End_Button" destination="Oke-8P-uKU" id="W3x-Fo-wDt"/>
@@ -268,16 +320,16 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
