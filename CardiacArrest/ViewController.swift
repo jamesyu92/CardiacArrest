@@ -89,6 +89,41 @@ class ViewController: UIViewController {
     // Used in the Code Logs view
     var codeLogs: [[String]] = [["Time","Split","Action","",""]]
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Set the scrollView's frame to be the size of the screen
+        // scrollView's y-value: Top Safe Area + Height of Top Stack + Margins
+        // scrollView's height: Safe Area Height - Top Stack - Bottom Stack
+        
+        let scrollView_y: Double = view.safeAreaLayoutGuide.layoutFrame.minY + CPR_EPI_SHOCK_Stack.frame.height + 20.0
+        
+        let scrollView_Height: Double = view.safeAreaLayoutGuide.layoutFrame.height - (CPR_EPI_SHOCK_Stack.frame.height + 20.0) - (Bottom_Stack.frame.height + 20.0)
+        
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: scrollView_y, width: view.frame.width, height: scrollView_Height))
+        
+        // Define the two images
+        flowchartImage = UIImageView(image: UIImage(named: "CardiacArrest.jpg"))
+        reversibleImage = UIImageView(image: UIImage(named: "ReversibleCauses.jpg"))
+        
+        // Determine scaled image height
+        let scaledHeightFlowchart = flowchartImage.frame.height * scrollView.frame.width / flowchartImage.frame.width
+        let scaledHeightReversible = reversibleImage.frame.height * scrollView.frame.width / reversibleImage.frame.width
+        
+        flowchartImage.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scaledHeightFlowchart)
+        reversibleImage.frame = CGRect(x: 0, y: scaledHeightFlowchart, width: scrollView.frame.width, height: scaledHeightReversible)
+        
+        // Set the contentSize to the size of the scaled image
+        scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: flowchartImage.frame.height + reversibleImage.frame.height)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(flowchartImage)
+        scrollView.addSubview(reversibleImage)
+        
+        // Scroll View Background Color
+        scrollView.backgroundColor = UIColor.white
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,33 +182,6 @@ class ViewController: UIViewController {
         // Hide the Death Button. This will be revealed when the app is started
         Death_Button.isHidden = true
         Death_Button.layer.cornerRadius = 5
-        
-        // Set the scrollView's frame to be the size of the screen
-        // Height: Starting y-value of Bottom Stack - Ending y-value of Top Stack - 20.0 (Two times the 10.0 margin)
-        let scrollViewHeight = Bottom_Stack.frame.minY - CPR_EPI_SHOCK_Stack.frame.maxY - 20.0
-        
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: CPR_EPI_SHOCK_Stack.frame.maxY, width: view.frame.width, height: scrollViewHeight))
-        
-        // Define the two images
-        flowchartImage = UIImageView(image: UIImage(named: "CardiacArrest.jpg"))
-        reversibleImage = UIImageView(image: UIImage(named: "ReversibleCauses.jpg"))
-        
-        // Determine scaled image height
-        let scaledHeightFlowchart = flowchartImage.frame.height * scrollView.frame.width / flowchartImage.frame.width
-        let scaledHeightReversible = reversibleImage.frame.height * scrollView.frame.width / reversibleImage.frame.width
-        
-        flowchartImage.frame = CGRect(x: 0, y: 0, width: scrollView.frame.width, height: scaledHeightFlowchart)
-        reversibleImage.frame = CGRect(x: 0, y: scaledHeightFlowchart, width: scrollView.frame.width, height: scaledHeightReversible)
-        
-        // Set the contentSize to the size of the scaled image
-        scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: flowchartImage.frame.height + reversibleImage.frame.height)
-        
-        view.addSubview(scrollView)
-        scrollView.addSubview(flowchartImage)
-        scrollView.addSubview(reversibleImage)
-        
-        // Scroll View Background Color
-        scrollView.backgroundColor = UIColor.white
         
         // Define Date Formatter
         dateFormatter.dateFormat = "HH:mm:ss"
